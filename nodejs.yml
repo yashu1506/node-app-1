@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green
+spec:
+  selector:
+    matchLabels:
+      app: bluegreen-service
+      version: v1
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: bluegreen-service
+        version: v1
+    spec:
+      containers:
+      - name: green
+        image: viraj5132/node-demo:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+
+      
+---
+#gfjhgnnn
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen-service
+spec:
+  type: LoadBalancer
+  selector:
+      app: bluegreen-service
+      version: v1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
