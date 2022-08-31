@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  selector:
+    matchLabels:
+      app: bluegreen-service
+      version: v2
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: bluegreen-service
+        version: v2
+    spec:
+      containers:
+      - name: blue
+        image: viraj5132/krima:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
