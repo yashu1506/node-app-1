@@ -3,7 +3,7 @@ version: 0.1
 phases:
   pre_build:
     commands:
-      - \$(docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD)
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   build:
     commands:
       - docker build -t viraj5132/krima:latest .
