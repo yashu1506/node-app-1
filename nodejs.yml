@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: green
-        image: viraj5132/node-demo:latest
+        image: viraj5132/krima:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
