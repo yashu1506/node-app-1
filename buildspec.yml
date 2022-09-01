@@ -1,9 +1,10 @@
 version: 0.1
 
 phases:
-  pre_build:
+  install:
     commands:
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - echo pre_build step.... 
+      - docker login -username $DOCKER_USERNAME -password $DOCKER_PASSWORD
   build:
     commands:
       - docker build -t viraj5132/krima:latest .
