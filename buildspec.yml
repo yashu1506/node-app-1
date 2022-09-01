@@ -8,12 +8,6 @@ phases:
     commands:
       - docker build -t viraj5132/krima:latest .
       - docker push viraj5132/krima:latest
-#   post_build:
-#     commands:
-  #  awsCodeBuild projectName: "<codebuild-projectname>",region: "ap-south-1", sourceControlType: "jenkins"
-
- pre_build:
-    commands:
       - scp -o StrictHostKeyChecking=no nodejs.yml bluetraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/node-app-1
       - ssh ubuntu@$DEPLOY_IP kubectl rollout restart deployment green
   build:
