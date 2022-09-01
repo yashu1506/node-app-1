@@ -18,7 +18,7 @@ pipeline{
               when { branch 'main'}
             steps {
                     sh "echo staring deploy the image in Kubernetes"
-                    sh "scp -o StrictHostKeyChecking=no nodejs.yaml bluetraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/node-app-1"
+                    sh "scp -o StrictHostKeyChecking=no nodejs.yml bluetraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/node-app-1"
                     sh "ssh ubuntu@$DEPLOY_IP kubectl rollout restart deployment green" 
             }
         }
