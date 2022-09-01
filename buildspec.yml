@@ -1,8 +1,6 @@
 version: 0.2
 phases:
 install:
-   commands:
-      -  apt install docker.io
  pre_build:
     commands:
       - echo pre_build step.... 
