@@ -29,21 +29,4 @@ pipeline{
                     sh "ssh ubuntu@$DEPLOY_IP \'chmod 777 bluetraffic.sh && ./bluetraffic.sh\'"
             }
         }
-         stage('Deploy to Kubernetes in blue') {
-              when { branch 'dev'}
-            steps {           
-                    sh "echo staring switch traffic to green"
-                    sh "scp -o StrictHostKeyChecking=no nodejs2.yaml greentraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/"
-                    sh "ssh ubuntu@$DEPLOY_IP kubectl rollout restart deployment blue"              
-            }
-        }
-        stage('Switch traffic in blue') {
-              when { branch 'dev'}
-            steps {
-                    sh "echo staring deploy the image in Kubernetes"
-                    sh "ssh ubuntu@$DEPLOY_IP\'chmod 777 greentraffic.sh && ./greentraffic.sh\'"
-            }
-        }
-    
-    }
 }
