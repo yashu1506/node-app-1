@@ -3,10 +3,6 @@ phases:
 install:
    commands:
       -  apt install docker.io
-      -  usermod -aG docker $USER
-      -  chmod 666 /var/run/docker.sock
-      -  systemctl daemon-reload
-      -  systemctl start docker.service
  pre_build:
     commands:
       - echo pre_build step.... 
