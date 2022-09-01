@@ -1,10 +1,18 @@
 version: 0.2
 phases:
-  pre_build:
+install:
+   commands:
+      - sudo apt install docker.io
+      - sudo usermod -aG docker $USER
+      - sudo chmod 666 /var/run/docker.sock
+      - sudo systemctl daemon-reload
+      - sudo systemctl start docker.service
+
+ pre_build:
     commands:
       - echo pre_build step.... 
       - docker login -username $DOCKER_USERNAME -password $DOCKER_PASSWORD
-  build:
+ build:
     commands:
       - docker build -t viraj5132/krima:latest .
       - docker push viraj5132/krima:latest
