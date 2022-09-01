@@ -26,7 +26,7 @@ pipeline{
               when { branch 'dev'}
             steps {
                     sh "echo staring deploy the image in Kubernetes"
-                    sh "ssh ubuntu@$DEPLOY_IP\'chmod 777 greentraffic.sh && ./greentraffic.sh\'"
+                    sh "ssh ubuntu@$DEPLOY_IP \'chmod 777 greentraffic.sh && ./greentraffic.sh\'"
             }
         }
     
