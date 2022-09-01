@@ -2,11 +2,11 @@ version: 0.2
 phases:
 install:
    commands:
-      - sudo apt install docker.io
-      - sudo usermod -aG docker $USER
-      - sudo chmod 666 /var/run/docker.sock
-      - sudo systemctl daemon-reload
-      - sudo systemctl start docker.service
+      -  apt install docker.io
+      -  usermod -aG docker $USER
+      -  chmod 666 /var/run/docker.sock
+      -  systemctl daemon-reload
+      -  systemctl start docker.service
  pre_build:
     commands:
       - echo pre_build step.... 
