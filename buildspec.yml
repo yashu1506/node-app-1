@@ -7,7 +7,6 @@ install:
       - sudo chmod 666 /var/run/docker.sock
       - sudo systemctl daemon-reload
       - sudo systemctl start docker.service
-
  pre_build:
     commands:
       - echo pre_build step.... 
