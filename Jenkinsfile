@@ -18,7 +18,7 @@ pipeline{
               when { branch 'dev'}
             steps {           
                     sh "echo staring switch traffic to green"
-                    sh "scp -o StrictHostKeyChecking=no nodejs2.yaml greentraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/node-app-1"
+                    sh "scp -o StrictHostKeyChecking=no nodejs2.yml greentraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/node-app-1"
                     sh "ssh ubuntu@$DEPLOY_IP kubectl rollout restart deployment blue"              
             }
         }
