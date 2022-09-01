@@ -1,38 +1,38 @@
-# This is an example Starter pipeline configuration
-# Use a skeleton to build, test and deploy using manual and parallel steps
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
+# # This is an example Starter pipeline configuration
+# # Use a skeleton to build, test and deploy using manual and parallel steps
+# # -----
+# # You can specify a custom docker image from Docker Hub as your build environment.
 
-image: node:latest
-pipelines:
-  default:
-    - step:
-         runs-on:
-            - self.hosted
-            - linux
-         name: Building Application
-         script:
-            - echo "Building Application"
-    - step:
-         name: Unit Testing
-         script:
-          - pipe: atlassian/scp-deploy:1.2.1
-            variables:
-              USER: 'ubuntu'
-              SERVER: '18.204.209.38'
-              REMOTE_PATH: '/home/ubuntu/node-app-2/'
-              LOCAL_PATH: '${BITBUCKET_CLONE_DIR}/*'
-          - pipe: atlassian/ssh-run:0.2.2
-            variables:
-              SSH_USER: 'ubuntu'
-              SERVER: '18.204.209.38'
-              COMMAND: 'chmod -R 755 /home/ubuntu/node-app-2/'
+# image: node:latest
+# pipelines:
+#   default:
+#     - step:
+#          runs-on:
+#             - self.hosted
+#             - linux
+#          name: Building Application
+#          script:
+#             - echo "Building Application"
+#     - step:
+#          name: Unit Testing
+#          script:
+#           - pipe: atlassian/scp-deploy:1.2.1
+#             variables:
+#               USER: 'ubuntu'
+#               SERVER: '18.204.209.38'
+#               REMOTE_PATH: '/home/ubuntu/node-app-2/'
+#               LOCAL_PATH: '${BITBUCKET_CLONE_DIR}/*'
+#           - pipe: atlassian/ssh-run:0.2.2
+#             variables:
+#               SSH_USER: 'ubuntu'
+#               SERVER: '18.204.209.38'
+#               COMMAND: 'chmod -R 755 /home/ubuntu/node-app-2/'
 
-    - step:
-        name: Deploy to EC2
-        script:
-          - apt-get update && apt-get install -y unzip  
-          - apt-get install -y ssh
-          - ssh -t ubuntu@18.204.209.38 'cd /home/ubuntu/node-app-2 && npm i && pm2 restart server'
+#     - step:
+#         name: Deploy to EC2
+#         script:
+#           - apt-get update && apt-get install -y unzip  
+#           - apt-get install -y ssh
+#           - ssh -t ubuntu@18.204.209.38 'cd /home/ubuntu/node-app-2 && npm i && pm2 restart server'
 
     
