@@ -14,21 +14,6 @@ pipeline{
                 sh 'docker push viraj5132/krima:latest'
             }
         }
-        stage('Deploy to Kubernetes in green') {
-              when { branch 'main'}
-            steps {
-                    sh "echo staring deploy the image in Kubernetes"
-                    sh "scp -o StrictHostKeyChecking=no nodejs.yaml bluetraffic.sh ubuntu@$DEPLOY_IP:/home/ubuntu/"
-                    sh "ssh ubuntu@$DEPLOY_IP kubectl rollout restart deployment green" 
-            }
-        }
-        stage('Switch traffic in green') {
-              when { branch 'main'}
-            steps {
-                    sh "echo staring switch traffic to blue"
-                    sh "ssh ubuntu@$DEPLOY_IP \'chmod 777 bluetraffic.sh && ./bluetraffic.sh\'"
-            }
-        }
          stage('Deploy to Kubernetes in blue') {
               when { branch 'dev'}
             steps {           
