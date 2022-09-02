@@ -5,8 +5,8 @@ phases:
       - echo Logging in to Amazon ECR...
       - cd ~/.ssh
       - ls
-      - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/authorized_keys
-      - ssh -o StrictHostKeyChecking=no ubuntu@13.233.110.12
+#       - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/authorized_keys
+#       - ssh -o StrictHostKeyChecking=no ubuntu@13.233.110.12
 #       - aws --version
 #       - docker -v
 #       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
