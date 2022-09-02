@@ -5,6 +5,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - cd ~/.ssh
       - ls
+      - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 #       - aws --version
 #       - docker -v
 #       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
