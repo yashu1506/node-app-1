@@ -4,12 +4,13 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
+      - docker build -t node-app .
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
       - echo Build started on `date`
       - echo building docker image
-      - docker build -t node-app .
+#       - docker build -t node-app .
       - docker tag node-app:latest 017690734226.dkr.ecr.ap-south-1.amazonaws.com/node-app:latest
   post_build:
     commands:
